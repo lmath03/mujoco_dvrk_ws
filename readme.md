@@ -57,3 +57,5 @@ python3 src/franka_mujoco_rl/panda_parallel_movecollisionTEST.py
 ```
 
 This will launch the MuJoCo viewer, allowing you to watch the real-time inference and collision avoidance logic of the robot.
+
+<img width="3840" height="2160" alt="panda" src="https://github.com/user-attachments/assets/4f0a856b-5804-45b8-bd8f-e4b53d4319d7" />
