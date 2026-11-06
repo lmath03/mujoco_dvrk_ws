@@ -39,17 +39,17 @@ roslaunch plumake_vision_module arm_seg2.launch
 ```
 <img width="639" height="395" alt="c16e2665-086c-4803-9e9e-802fbcfd66cd" src="https://github.com/user-attachments/assets/ca33d44c-8425-4810-8911-8a0815f12c9a" />
 
-Part 2: Franka Panda RL Collision Avoidance (MuJoCo)
+# Part 2: Franka Panda RL Collision Avoidance (MuJoCo)
 This section focuses on training and testing a Reinforcement Learning agent to perform dynamic collision avoidance using a 7-DoF Franka Emika Panda manipulator. The environment is built with Gymnasium and MuJoCo, and the agent is trained using the PPO algorithm (Stable-Baselines3).
 
-1. Train the Agent
+## 1. Train the Agent
 To start a new training session from scratch, run the training script. This will initialize the MuJoCo environment and begin training the PPO agent. (Note: Training for millions of steps requires significant computational time).
 
 ```Bash
 python3 src/franka_mujoco_rl/panda_FULLcollision.py
 ```
 
-2. Test / Observe the Trained Model
+## 2. Test / Observe the Trained Model
 A pre-trained model (trained for 60 Million steps) is included in this repository. To observe the fully trained agent successfully reaching the target while avoiding the dynamic obstacle, run the test script:
 
 ```Bash
