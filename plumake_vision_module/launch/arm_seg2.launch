@@ -1,0 +1,39 @@
+<launch>
+    
+    <node name="coppelia_combiner" pkg="plumake_vision_module" type="coppelia_combiner" args=""
+		respawn="false"
+		output="screen">
+
+		<!-- if false, it work on coppeliasim with rosInterface plugin-->
+		<param name="old_plugin" type="bool" value="false" />
+
+		<!-- subscribers topic-->
+		<param name="camera_color_name" type="string" value="/camera/color/image_rect_color" />
+		<param name="camera_depth_name" type="string"
+			value="/camera/aligned_depth_to_color/image_raw" />
+		<param name="depth_buffer_in" type="string" value="/coppelia/depth_buff" />
+		<param name="point_cloud_out" type="string" value="/camera/depth_registered/points" />
+
+
+		<param name="u_res" value="480" />
+		<param name="v_res" value="640" />
+		<param name="near_clip" value="1.00e-02" />
+		<param name="far_clip" value="3.50e+00" />
+		<param name="view_angle" value="60.0" />
+	</node>
+
+    <node name="arm_segmentation2" pkg="plumake_vision_module" type="arm_segmentation2" output="screen" />
+
+	<param name="robot_description" command="$(find xacro)/xacro $(find franka_description)/robots/panda/panda.urdf.xacro" />
+
+    <node name="panda_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <remap from="joint_states" to="/vrep_interface/joint_states" />
+    </node>
+
+    <node name="panda_world_broadcaster" pkg="tf2_ros" type="static_transform_publisher" 
+          args="-1.7 -0.8 0.8 3.14159 0 0 world panda_link0" />
+
+    <node name="stewart_platform" pkg="rviz" type="rviz"
+		args="-d $(find plumake_vision_module)/rviz/plumake_vision_module.rviz" respawn="false" />
+
+</launch>

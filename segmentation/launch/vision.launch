@@ -1,0 +1,4 @@
+<launch>
+  <node name="arm_segmenter" pkg="segmentation" type="arm_segmentation_node" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz" required="true" />
+</launch>
